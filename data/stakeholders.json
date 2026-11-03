@@ -1,0 +1,11 @@
+{
+  "accused": { "name": "Accused", "bg": "#C6E2FF", "border": "#7BA7E1", "text": "#0F294A" },
+  "complainant": { "name": "Complainant", "bg": "#F9C6DF", "border": "#E27B9B", "text": "#4A0F29" },
+  "magistrate": { "name": "Magistrate", "bg": "#D1F2D9", "border": "#76C887", "text": "#11421C" },
+  "judiciary": { "name": "Judiciary", "bg": "#FDF2B8", "border": "#E2C84A", "text": "#42370B" },
+  "court_staff": { "name": "Court Staff", "bg": "#E5DAFB", "border": "#AC8EE8", "text": "#311854" },
+  "police": { "name": "Police", "bg": "#70B9FF", "border": "#2563EB", "text": "#08214D" },
+  "system_metric": { "name": "System Metric", "bg": "#1E293B", "border": "#0F172A", "text": "#FFFFFF" },
+  "friction_point": { "name": "Friction Point", "bg": "#DE3163", "border": "#9F1239", "text": "#FFFFFF" },
+  "resolution_endpoint": { "name": "Dispute Resolution", "bg": "#B83A2A", "border": "#7F1D1D", "text": "#FFFFFF" }
+}

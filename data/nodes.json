@@ -1,0 +1,123 @@
+[
+  { "id": "completeness_of_filing", "type": "default", "position": { "x": 100, "y": 80 }, "data": { "label": "Completeness of Filing Documents", "stakeholder": "complainant" } },
+  { "id": "burden_on_court_staff", "type": "default", "position": { "x": 480, "y": 80 }, "data": { "label": "Burden on Court Staff", "stakeholder": "court_staff" } },
+  { "id": "scrutiny_backlog", "type": "default", "position": { "x": 860, "y": 80 }, "data": { "label": "Scrutiny Backlog", "stakeholder": "judiciary" } },
+  
+  { "id": "speed_of_filing_verification", "type": "default", "position": { "x": 480, "y": 200 }, "data": { "label": "Speed of Filing Verification by Court Staff", "stakeholder": "court_staff" } },
+  { "id": "no_of_cases_in_filing", "type": "default", "position": { "x": 860, "y": 200 }, "data": { "label": "No. of Cases in Filing", "stakeholder": "judiciary" } },
+  { "id": "time_taken_in_scrutiny", "type": "default", "position": { "x": 1240, "y": 200 }, "data": { "label": "Time Taken to Scrutinize", "stakeholder": "system_metric" } },
+
+  { "id": "length_of_scrutiny_period", "type": "default", "position": { "x": 480, "y": 320 }, "data": { "label": "Length of Scrutiny Period", "stakeholder": "system_metric" } },
+  { "id": "rate_of_errors_in_scrutiny", "type": "default", "position": { "x": 480, "y": 440 }, "data": { "label": "Rate of Errors Identified in Scrutiny", "stakeholder": "court_staff" } },
+  { "id": "number_of_unregistered_complaints", "type": "default", "position": { "x": 860, "y": 440 }, "data": { "label": "Number of Unregistered Complaints", "stakeholder": "judiciary" } },
+  { "id": "pending_registration", "type": "default", "position": { "x": 1240, "y": 440 }, "data": { "label": "Cases Pending Registration", "stakeholder": "judiciary" } },
+  { "id": "time_to_registration", "type": "default", "position": { "x": 1600, "y": 440 }, "data": { "label": "Time to Registration", "stakeholder": "judiciary" } },
+  { "id": "delay_from_registration_to_summons", "type": "default", "position": { "x": 1960, "y": 440 }, "data": { "label": "Delay from Registration to Summons Issuance", "stakeholder": "judiciary" } },
+
+  { "id": "loss_of_trust_in_legal_system", "type": "default", "position": { "x": 100, "y": 620 }, "data": { "label": "Time Taken Toward Dispute (Court Action)", "stakeholder": "complainant" } },
+  { "id": "statutory_notice", "type": "default", "position": { "x": 100, "y": 740 }, "data": { "label": "138 NI Statutory Notice to Accused", "stakeholder": "friction_point" } },
+  { "id": "chances_of_notice_quashed", "type": "default", "position": { "x": 440, "y": 620 }, "data": { "label": "Chances of Notice Quashed", "stakeholder": "accused" } },
+  { "id": "share_of_dues_paid", "type": "default", "position": { "x": 440, "y": 740 }, "data": { "label": "Share of Dues Paid", "stakeholder": "accused" } },
+
+  { "id": "delay_in_pursuing_issue", "type": "default", "position": { "x": 780, "y": 620 }, "data": { "label": "Delay in Pursuing Legal Option", "stakeholder": "complainant" } },
+  { "id": "understanding_notice", "type": "default", "position": { "x": 780, "y": 740 }, "data": { "label": "Understanding Dishonour Notice", "stakeholder": "accused" } },
+  { "id": "cost_of_seeking_legal_redress", "type": "default", "position": { "x": 780, "y": 860 }, "data": { "label": "Cost of Seeking Legal Redress", "stakeholder": "complainant" } },
+  { "id": "confidence_in_pursuing_issue", "type": "default", "position": { "x": 780, "y": 980 }, "data": { "label": "Confidence in Pursuing Issue", "stakeholder": "complainant" } },
+
+  { "id": "willingness_to_pay", "type": "default", "position": { "x": 1140, "y": 740 }, "data": { "label": "Willingness to Pay / Settle", "stakeholder": "accused" } },
+  { "id": "alignment_of_client_expectations", "type": "default", "position": { "x": 1140, "y": 980 }, "data": { "label": "Alignment of Client Expectations", "stakeholder": "complainant" } },
+  { "id": "settlement_dispute_exit", "type": "default", "position": { "x": 1500, "y": 740 }, "data": { "label": "Use of Mediation Outside Court", "stakeholder": "complainant" } },
+
+  { "id": "use_of_reputable_courier_post", "type": "default", "position": { "x": 1500, "y": 540 }, "data": { "label": "Use of Reputable Courier / Post", "stakeholder": "court_staff" } },
+  { "id": "length_of_waiting_period_between_actions", "type": "default", "position": { "x": 1820, "y": 620 }, "data": { "label": "Waiting Period Between Actions", "stakeholder": "system_metric" } },
+  { "id": "time_taken_to_deliver", "type": "default", "position": { "x": 1820, "y": 740 }, "data": { "label": "Time Taken to Deliver", "stakeholder": "system_metric" } },
+  { "id": "speed_of_service", "type": "default", "position": { "x": 1820, "y": 860 }, "data": { "label": "Speed of Service Delivery", "stakeholder": "institutional_other" } },
+
+  { "id": "summons_effectively_served", "type": "default", "position": { "x": 2160, "y": 500 }, "data": { "label": "Share of Summons Served", "stakeholder": "complainant" } },
+  { "id": "verified_address", "type": "default", "position": { "x": 2160, "y": 640 }, "data": { "label": "Accuracy of Verified Address", "stakeholder": "complainant" } },
+
+  { "id": "likelihood_accused_receives_summons", "type": "default", "position": { "x": 2520, "y": 540 }, "data": { "label": "Likelihood Accused Receives Summons", "stakeholder": "accused" } },
+  { "id": "ease_of_understanding_summons", "type": "default", "position": { "x": 2520, "y": 660 }, "data": { "label": "Ease in Understanding Summons", "stakeholder": "accused" } },
+
+  { "id": "perceived_accountability", "type": "default", "position": { "x": 2900, "y": 540 }, "data": { "label": "Perceived Legal Accountability", "stakeholder": "accused" } },
+  { "id": "tendency_to_evade", "type": "default", "position": { "x": 2900, "y": 660 }, "data": { "label": "Tendency to Evade", "stakeholder": "accused" } },
+  { "id": "financial_condition", "type": "default", "position": { "x": 2900, "y": 780 }, "data": { "label": "Financial Condition of Accused", "stakeholder": "accused" } },
+
+  { "id": "incentive_to_delay_action", "type": "default", "position": { "x": 3260, "y": 540 }, "data": { "label": "Incentive to Delay Action", "stakeholder": "accused" } },
+  { "id": "geographic_distance_to_court", "type": "default", "position": { "x": 3260, "y": 660 }, "data": { "label": "Geographical Constraint of Court", "stakeholder": "accused" } },
+  { "id": "awareness_of_consequences", "type": "default", "position": { "x": 3260, "y": 780 }, "data": { "label": "Awareness of Consequences", "stakeholder": "accused" } },
+
+  { "id": "digital_literacy", "type": "default", "position": { "x": 3600, "y": 540 }, "data": { "label": "Digital Literacy", "stakeholder": "institutional_other" } },
+  { "id": "access_to_legal_counsel", "type": "default", "position": { "x": 3600, "y": 660 }, "data": { "label": "Access to Legal Counsel", "stakeholder": "institutional_other" } },
+
+  { "id": "accused_appears_in_court", "type": "default", "position": { "x": 2700, "y": 920 }, "data": { "label": "Chances Accused Appears in Court", "stakeholder": "accused" } },
+  { "id": "hearings_proceed", "type": "default", "position": { "x": 2700, "y": 1050 }, "data": { "label": "Share of Scheduled Hearings Proceed", "stakeholder": "judiciary" } },
+  { "id": "number_of_hearing_occurs", "type": "default", "position": { "x": 2700, "y": 1180 }, "data": { "label": "Number of Hearings Occur", "stakeholder": "judiciary" } },
+
+  { "id": "extent_of_proceedings_frustrated", "type": "default", "position": { "x": 2160, "y": 1060 }, "data": { "label": "Extent of Proceedings Frustrated", "stakeholder": "accused" } },
+  { "id": "rate_of_demand_bail", "type": "default", "position": { "x": 2160, "y": 1190 }, "data": { "label": "Rate of Demand Bail", "stakeholder": "accused" } },
+  { "id": "presence_of_guarantor", "type": "default", "position": { "x": 2420, "y": 1190 }, "data": { "label": "Presence of Guarantor", "stakeholder": "institutional_other" } },
+  { "id": "case_delay_warrants", "type": "default", "position": { "x": 2160, "y": 1320 }, "data": { "label": "Case Delay (Warrant Stage)", "stakeholder": "judiciary" } },
+
+  { "id": "number_of_custody_cases", "type": "default", "position": { "x": 1050, "y": 1300 }, "data": { "label": "Number of Custody Cases", "stakeholder": "judiciary" } },
+  { "id": "burden_on_police", "type": "default", "position": { "x": 1350, "y": 1300 }, "data": { "label": "Burden on Police", "stakeholder": "judiciary" } },
+  { "id": "rate_warrant_execution", "type": "default", "position": { "x": 1350, "y": 1440 }, "data": { "label": "Rate of Warrant Execution", "stakeholder": "judiciary" } },
+  { "id": "police_effort_pursuit", "type": "default", "position": { "x": 1350, "y": 1580 }, "data": { "label": "Police Effort in Pursuing Accused", "stakeholder": "judiciary" } },
+  { "id": "responsibility_of_higher_police", "type": "default", "position": { "x": 1350, "y": 1710 }, "data": { "label": "Responsibility of Higher Police", "stakeholder": "judiciary" } },
+
+  { "id": "magistrate_decision_escalate", "type": "default", "position": { "x": 1750, "y": 1160 }, "data": { "label": "Magistrate Propensity to Escalate", "stakeholder": "magistrate" } },
+  { "id": "severity_of_warrants", "type": "default", "position": { "x": 1750, "y": 1300 }, "data": { "label": "Severity of Warrants Issued", "stakeholder": "judiciary" } },
+  { "id": "chances_accused_traced", "type": "default", "position": { "x": 1750, "y": 1440 }, "data": { "label": "Chances Accused Traced", "stakeholder": "judiciary" } },
+  { "id": "number_of_arrests", "type": "default", "position": { "x": 1750, "y": 1580 }, "data": { "label": "Number of Arrests", "stakeholder": "judiciary" } },
+  { "id": "dilatory_tactics_delay_warrants", "type": "default", "position": { "x": 1750, "y": 1710 }, "data": { "label": "Dilatory Tactics to Delay", "stakeholder": "accused" } },
+  { "id": "complainant_communication_police", "type": "default", "position": { "x": 1750, "y": 1840 }, "data": { "label": "Complainant's Communication with Police", "stakeholder": "complainant" } },
+
+  { "id": "complexity_of_the_case", "type": "default", "position": { "x": 2700, "y": 1320 }, "data": { "label": "Complexity of the Case", "stakeholder": "accused" } },
+  { "id": "number_of_cases", "type": "default", "position": { "x": 2700, "y": 1450 }, "data": { "label": "Number of Cases (Docket)", "stakeholder": "judiciary" } },
+  { "id": "time_spent_lawyer_consultation", "type": "default", "position": { "x": 2700, "y": 1580 }, "data": { "label": "Time Spent Lawyers in Consultation", "stakeholder": "system_metric" } },
+  { "id": "gap_between_consecutive_hearings", "type": "default", "position": { "x": 2700, "y": 1710 }, "data": { "label": "Gap Between Consecutive Hearings", "stakeholder": "system_metric" } },
+
+  { "id": "caseload_backlog", "type": "default", "position": { "x": 3050, "y": 1320 }, "data": { "label": "Backlog (Operational)", "stakeholder": "judiciary" } },
+  { "id": "frequency_of_adjournments", "type": "default", "position": { "x": 3050, "y": 1450 }, "data": { "label": "Frequency of Adjournments", "stakeholder": "judiciary" } },
+  { "id": "level_of_escalation_of_case", "type": "default", "position": { "x": 3050, "y": 1580 }, "data": { "label": "Level of Escalation of the Case", "stakeholder": "judiciary" } },
+
+  { "id": "availability_of_surety", "type": "default", "position": { "x": 3400, "y": 1260 }, "data": { "label": "Availability of Surety", "stakeholder": "accused" } },
+  { "id": "rate_magistrate_attendance", "type": "default", "position": { "x": 3400, "y": 1380 }, "data": { "label": "Rate of Magistrate Attendance", "stakeholder": "magistrate" } },
+  { "id": "rate_complainant_lawyer_attendance", "type": "default", "position": { "x": 3400, "y": 1500 }, "data": { "label": "Rate Complainant Lawyer Attendance", "stakeholder": "complainant" } },
+  { "id": "ask_adjournment_complainant_lawyer", "type": "default", "position": { "x": 3400, "y": 1620 }, "data": { "label": "Ask Adjournment (Complainant Lawyer)", "stakeholder": "complainant" } },
+  { "id": "ask_adjournment_accused_lawyer", "type": "default", "position": { "x": 3400, "y": 1740 }, "data": { "label": "Ask Adjournment (Accused Lawyer)", "stakeholder": "accused" } },
+
+  { "id": "schedulability_magistrate_lawyers", "type": "default", "position": { "x": 3750, "y": 1380 }, "data": { "label": "Schedulability of Magistrate & Lawyers", "stakeholder": "judiciary" } },
+  { "id": "rate_stenographer_attendance", "type": "default", "position": { "x": 3750, "y": 1500 }, "data": { "label": "Rate of Stenographer Attendance", "stakeholder": "judiciary" } },
+  { "id": "both_party_case_preparation", "type": "default", "position": { "x": 3750, "y": 1620 }, "data": { "label": "Both Party Lawyer Case Prep", "stakeholder": "judiciary" } },
+  { "id": "availability_of_magistrate_and_staff_every_session", "type": "default", "position": { "x": 3750, "y": 1740 }, "data": { "label": "Staff Availability Every Session", "stakeholder": "judiciary" } },
+  { "id": "both_party_lawyer_case_preparation_2", "type": "default", "position": { "x": 4100, "y": 1620 }, "data": { "label": "Both Party Case Preparation (Readiness)", "stakeholder": "judiciary" } },
+
+  { "id": "cases_reaching_judgment", "type": "default", "position": { "x": 4100, "y": 1260 }, "data": { "label": "Share of Cases Reaching Judgement", "stakeholder": "friction_point" } },
+  { "id": "cases_referred_to_mediation", "type": "default", "position": { "x": 4100, "y": 1380 }, "data": { "label": "Share of Cases Referred to Mediation", "stakeholder": "magistrate" } },
+  { "id": "resolution_through_court", "type": "default", "position": { "x": 4450, "y": 1260 }, "data": { "label": "Resolution Through Court", "stakeholder": "resolution_endpoint" } },
+  { "id": "rate_resolution_lok_adalat", "type": "default", "position": { "x": 4450, "y": 1380 }, "data": { "label": "Dispute Resolution (Lok Adalat)", "stakeholder": "institutional_other" } },
+  { "id": "rate_resolution_mediation", "type": "default", "position": { "x": 4450, "y": 1500 }, "data": { "label": "Dispute Resolution (Mediation Cell)", "stakeholder": "institutional_other" } },
+  { "id": "time_per_case_resolution", "type": "default", "position": { "x": 4450, "y": 1140 }, "data": { "label": "Time per Case Resolution", "stakeholder": "system_metric" } },
+
+  { "id": "perceived_consequences_non_appearance", "type": "default", "position": { "x": 4800, "y": 860 }, "data": { "label": "Perceived Consequences Non-Appearance", "stakeholder": "accused" } },
+  { "id": "chances_accused_appears_2", "type": "default", "position": { "x": 5150, "y": 860 }, "data": { "label": "Chances Accused Appears (Hearing Stage)", "stakeholder": "accused" } },
+  { "id": "time_spent_per_hearing", "type": "default", "position": { "x": 4800, "y": 990 }, "data": { "label": "Time Spent by Judge per Hearing", "stakeholder": "judiciary" } },
+  { "id": "time_to_next_date", "type": "default", "position": { "x": 5150, "y": 990 }, "data": { "label": "Time to Set Next Proceeding Date", "stakeholder": "system_metric" } },
+  { "id": "case_pendency", "type": "default", "position": { "x": 4800, "y": 1260 }, "data": { "label": "Case Pendency", "stakeholder": "judiciary" } },
+  { "id": "pressure_to_clear_cases", "type": "default", "position": { "x": 5150, "y": 1260 }, "data": { "label": "Pressure on Court to Clear Cases", "stakeholder": "judiciary" } },
+
+  { "id": "money_spent_on_case", "type": "default", "position": { "x": 5500, "y": 1260 }, "data": { "label": "Money Spent on the Case", "stakeholder": "complainant" } },
+  { "id": "willingness_to_continue", "type": "default", "position": { "x": 5850, "y": 1260 }, "data": { "label": "Willingness to Continue", "stakeholder": "complainant" } },
+  { "id": "number_of_withdrawn_or_discounted_settlement", "type": "default", "position": { "x": 5850, "y": 1400 }, "data": { "label": "Withdrawn or Discounted Settlement", "stakeholder": "complainant" } },
+  { "id": "cases_closed_without_recovery", "type": "default", "position": { "x": 5850, "y": 1540 }, "data": { "label": "Cases Closed Without Recovery", "stakeholder": "friction_point" } },
+  { "id": "clerical_documentation", "type": "default", "position": { "x": 5850, "y": 1670 }, "data": { "label": "Clerical Documentation", "stakeholder": "judiciary" } },
+  { "id": "evidence_credibility", "type": "default", "position": { "x": 5850, "y": 1790 }, "data": { "label": "Evidence Credibility", "stakeholder": "judiciary" } },
+  { "id": "mental_conflict_over_escalation", "type": "default", "position": { "x": 5850, "y": 1910 }, "data": { "label": "Mental Conflict Over Escalation", "stakeholder": "complainant" } },
+
+  { "id": "likelihood_of_closure", "type": "default", "position": { "x": 3400, "y": 1960 }, "data": { "label": "Likelihood of Closure", "stakeholder": "judiciary" } },
+  { "id": "case_settlement_end", "type": "default", "position": { "x": 3750, "y": 1960 }, "data": { "label": "Case Settlement", "stakeholder": "resolution_endpoint" } },
+  { "id": "perceived_credibility_of_accused", "type": "default", "position": { "x": 3400, "y": 2100 }, "data": { "label": "Perceived Credibility of Accused", "stakeholder": "accused" } },
+  { "id": "severity_of_punishment", "type": "default", "position": { "x": 3400, "y": 2230 }, "data": { "label": "Severity of Punishment", "stakeholder": "magistrate" } },
+  { "id": "share_of_accused_imprisoned", "type": "default", "position": { "x": 3400, "y": 2360 }, "data": { "label": "Share of Accused Imprisoned", "stakeholder": "resolution_endpoint" } }
+]
