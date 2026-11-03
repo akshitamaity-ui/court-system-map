@@ -33,7 +33,12 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
 
   const styledNodes = useMemo(() => {
     return initialNodes.map((node) => {
-      const stakeholder = (stakeholdersData as any)[node.data.stakeholder] || stakeholdersData.system_metric;
+      const stakeholder = (stakeholdersData as any)[node.data.stakeholder] || {
+        bg: '#F1F5F9',
+        border: '#CBD5E1',
+        text: '#0F172A',
+        name: 'General',
+      };
       const isInLoop = !activeLoop || activeLoop.keyNodes.includes(node.id);
 
       return {
@@ -42,17 +47,19 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
           backgroundColor: isInLoop ? stakeholder.bg : '#F8FAFC',
           borderColor: isInLoop ? stakeholder.border : '#E2E8F0',
           borderWidth: isInLoop ? '1.5px' : '1px',
+          borderStyle: 'solid',
           color: isInLoop ? stakeholder.text : '#94A3B8',
-          opacity: isInLoop ? 1 : 0.12,
-          borderRadius: '6px',
-          padding: '6px 10px',
-          fontSize: '10px',
+          opacity: isInLoop ? 1 : 0.15,
+          borderRadius: '8px',
+          padding: '8px 12px',
+          fontSize: '11px',
           fontWeight: 600,
-          lineHeight: '1.25',
-          maxWidth: '175px',
+          lineHeight: '1.3',
+          maxWidth: '180px',
           textAlign: 'center' as const,
-          boxShadow: isInLoop ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+          boxShadow: isInLoop ? '0 4px 12px rgba(0,0,0,0.06)' : 'none',
           transition: 'all 0.25s ease',
+          cursor: 'grab',
         },
       };
     });
@@ -74,7 +81,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               ? activeLoop.color
               : '#2563EB'
             : '#CBD5E1',
-          strokeWidth: isInLoop ? 3 : 1,
+          strokeWidth: isInLoop ? 3.5 : 1,
           opacity: !activeLoop || isInLoop ? 1 : 0.08,
           transition: 'all 0.25s ease',
         },
@@ -83,75 +90,195 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
   }, [initialEdges, activeLoop]);
 
   return (
-    <div className="relative w-screen h-screen bg-[#FDFDFE] flex overflow-hidden font-sans">
-      {/* Top Floating Loop Bar */}
-      <header className="absolute top-3 left-4 z-20 flex flex-wrap items-center gap-1.5 bg-white/95 backdrop-blur-md p-2 rounded-2xl shadow-xl border border-slate-200/80 max-w-[85vw]">
+    <div
+      style={{
+        position: 'relative',
+        width: '100vw',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: '#FDFDFE',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      }}
+    >
+      {/* Top Floating Control Bar */}
+      <header
+        style={{
+          position: 'absolute',
+          top: '16px',
+          left: '16px',
+          zIndex: 20,
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: '8px',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          padding: '8px 12px',
+          borderRadius: '16px',
+          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)',
+          border: '1px solid rgba(226, 232, 240, 0.9)',
+          maxWidth: '85vw',
+        }}
+      >
         <button
-          onClick={() => { setActiveLoopId(null); setSelectedFilter('ALL'); }}
-          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
-            !activeLoopId && selectedFilter === 'ALL'
-              ? 'bg-slate-900 text-white'
-              : 'text-slate-600 hover:bg-slate-100'
-          }`}
+          onClick={() => {
+            setActiveLoopId(null);
+            setSelectedFilter('ALL');
+          }}
+          style={{
+            padding: '6px 12px',
+            borderRadius: '10px',
+            fontSize: '12px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            border: 'none',
+            backgroundColor: !activeLoopId && selectedFilter === 'ALL' ? '#0F172A' : '#F1F5F9',
+            color: !activeLoopId && selectedFilter === 'ALL' ? '#FFFFFF' : '#475569',
+            transition: 'all 0.2s ease',
+          }}
         >
           All System
         </button>
 
-        <div className="flex bg-slate-100 rounded-xl p-0.5 text-[11px] font-semibold">
+        {/* Filter Segmented Pill */}
+        <div
+          style={{
+            display: 'flex',
+            backgroundColor: '#F1F5F9',
+            borderRadius: '10px',
+            padding: '2px',
+            gap: '2px',
+          }}
+        >
           <button
             onClick={() => setSelectedFilter('ALL')}
-            className={`px-2 py-1 rounded-lg transition ${selectedFilter === 'ALL' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'}`}
+            style={{
+              padding: '4px 10px',
+              borderRadius: '8px',
+              fontSize: '11px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: 'none',
+              backgroundColor: selectedFilter === 'ALL' ? '#FFFFFF' : 'transparent',
+              color: selectedFilter === 'ALL' ? '#0F172A' : '#64748B',
+              boxShadow: selectedFilter === 'ALL' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+            }}
           >
             All
           </button>
           <button
             onClick={() => setSelectedFilter('REINFORCING')}
-            className={`px-2 py-1 rounded-lg transition ${selectedFilter === 'REINFORCING' ? 'bg-white text-rose-600 shadow-sm' : 'text-slate-500'}`}
+            style={{
+              padding: '4px 10px',
+              borderRadius: '8px',
+              fontSize: '11px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: 'none',
+              backgroundColor: selectedFilter === 'REINFORCING' ? '#FFFFFF' : 'transparent',
+              color: selectedFilter === 'REINFORCING' ? '#E11D48' : '#64748B',
+              boxShadow: selectedFilter === 'REINFORCING' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+            }}
           >
             Reinforcing (R)
           </button>
           <button
             onClick={() => setSelectedFilter('BALANCING')}
-            className={`px-2 py-1 rounded-lg transition ${selectedFilter === 'BALANCING' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}
+            style={{
+              padding: '4px 10px',
+              borderRadius: '8px',
+              fontSize: '11px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: 'none',
+              backgroundColor: selectedFilter === 'BALANCING' ? '#FFFFFF' : 'transparent',
+              color: selectedFilter === 'BALANCING' ? '#2563EB' : '#64748B',
+              boxShadow: selectedFilter === 'BALANCING' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+            }}
           >
             Balancing (B)
           </button>
         </div>
 
-        <div className="h-4 w-px bg-slate-200 mx-1" />
+        <div style={{ width: '1px', height: '18px', backgroundColor: '#E2E8F0', margin: '0 4px' }} />
 
-        <div className="flex flex-wrap gap-1.5 max-h-20 overflow-y-auto">
-          {filteredLoops.map((loop) => (
-            <button
-              key={loop.id}
-              onClick={() => setActiveLoopId(loop.id)}
-              className={`px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition ${
-                activeLoopId === loop.id
-                  ? loop.type === 'Reinforcing'
-                    ? 'bg-rose-500 text-white shadow-sm'
-                    : 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              <span
-                className={`text-[10px] px-1 rounded font-bold ${
-                  activeLoopId === loop.id
-                    ? 'bg-white/20 text-white'
-                    : loop.type === 'Reinforcing'
-                    ? 'bg-rose-100 text-rose-700'
-                    : 'bg-blue-100 text-blue-700'
-                }`}
+        {/* Loop Pills */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '6px',
+            maxHeight: '80px',
+            overflowY: 'auto',
+          }}
+        >
+          {filteredLoops.map((loop) => {
+            const isSelected = activeLoopId === loop.id;
+            return (
+              <button
+                key={loop.id}
+                onClick={() => setActiveLoopId(loop.id)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '5px 10px',
+                  borderRadius: '10px',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  border: isSelected
+                    ? 'none'
+                    : '1px solid #E2E8F0',
+                  backgroundColor: isSelected
+                    ? loop.type === 'Reinforcing'
+                      ? '#E11D48'
+                      : '#2563EB'
+                    : '#FFFFFF',
+                  color: isSelected ? '#FFFFFF' : '#334155',
+                  boxShadow: isSelected ? '0 4px 10px rgba(0,0,0,0.15)' : 'none',
+                  transition: 'all 0.15s ease',
+                }}
               >
-                {loop.badge}
-              </span>
-              <span className="truncate max-w-[130px]">{loop.title}</span>
-            </button>
-          ))}
+                <span
+                  style={{
+                    fontSize: '10px',
+                    fontWeight: 800,
+                    padding: '2px 5px',
+                    borderRadius: '4px',
+                    backgroundColor: isSelected
+                      ? 'rgba(255,255,255,0.25)'
+                      : loop.type === 'Reinforcing'
+                      ? '#FFE4E6'
+                      : '#DBEAFE',
+                    color: isSelected
+                      ? '#FFFFFF'
+                      : loop.type === 'Reinforcing'
+                      ? '#BE123C'
+                      : '#1D4ED8',
+                  }}
+                >
+                  {loop.badge}
+                </span>
+                <span
+                  style={{
+                    maxWidth: '150px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {loop.title}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </header>
 
-      {/* Main Canvas Viewport */}
-      <main className="flex-1 h-full">
+      {/* Main Canvas */}
+      <main style={{ width: '100%', height: '100%' }}>
         <ReactFlow
           nodes={styledNodes}
           edges={styledEdges}
@@ -162,47 +289,164 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
         >
           <Background color="#CBD5E1" gap={20} size={1} />
           <Controls position="bottom-left" />
-          <MiniMap className="!bg-white !border !border-slate-200 !rounded-xl !shadow-sm" />
+          <MiniMap
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E2E8F0',
+              borderRadius: '12px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+            }}
+          />
         </ReactFlow>
       </main>
 
       {/* Right-hand Explainer Drawer */}
       {activeLoop && (
-        <aside className="w-[380px] bg-white/95 backdrop-blur-md border-l border-slate-200 p-5 z-20 flex flex-col justify-between shadow-2xl overflow-y-auto">
+        <aside
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            width: '380px',
+            height: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            borderLeft: '1px solid #E2E8F0',
+            padding: '24px',
+            zIndex: 30,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            boxShadow: '-10px 0 30px rgba(0,0,0,0.08)',
+            overflowY: 'auto',
+          }}
+        >
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
               <span
-                className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${
-                  activeLoop.type === 'Reinforcing' ? 'bg-rose-100 text-rose-700' : 'bg-blue-100 text-blue-700'
-                }`}
+                style={{
+                  padding: '3px 8px',
+                  borderRadius: '999px',
+                  fontSize: '10px',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  backgroundColor: activeLoop.type === 'Reinforcing' ? '#FFE4E6' : '#DBEAFE',
+                  color: activeLoop.type === 'Reinforcing' ? '#BE123C' : '#1D4ED8',
+                }}
               >
                 {activeLoop.type} Loop ({activeLoop.badge})
               </span>
-              <span className="text-[11px] font-medium text-slate-500">{activeLoop.nature}</span>
+              <span style={{ fontSize: '11px', fontWeight: 500, color: '#64748B' }}>
+                {activeLoop.nature}
+              </span>
             </div>
 
-            <h2 className="text-lg font-bold text-slate-900 mt-1 mb-3 leading-snug">{activeLoop.title}</h2>
+            <h2
+              style={{
+                fontSize: '18px',
+                fontWeight: 800,
+                color: '#0F172A',
+                marginTop: '4px',
+                marginBottom: '14px',
+                lineHeight: 1.3,
+              }}
+            >
+              {activeLoop.title}
+            </h2>
 
-            <div className="mb-3.5 bg-slate-50 border border-slate-200/80 rounded-xl p-3">
-              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Causal Path</h4>
-              <p className="text-[11px] font-mono text-slate-700 leading-relaxed">{activeLoop.path}</p>
+            {/* Path Box */}
+            <div
+              style={{
+                marginBottom: '14px',
+                backgroundColor: '#F8FAFC',
+                border: '1px solid #E2E8F0',
+                borderRadius: '12px',
+                padding: '12px',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '10px',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  color: '#94A3B8',
+                  marginBottom: '6px',
+                }}
+              >
+                Causal Path
+              </div>
+              <div
+                style={{
+                  fontSize: '11px',
+                  fontFamily: 'monospace',
+                  color: '#334155',
+                  lineHeight: 1.5,
+                }}
+              >
+                {activeLoop.path}
+              </div>
             </div>
 
-            <div className="mb-4">
-              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Mechanism & Reason</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">{activeLoop.mechanism}</p>
+            {/* Mechanism */}
+            <div style={{ marginBottom: '16px' }}>
+              <div
+                style={{
+                  fontSize: '10px',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  color: '#94A3B8',
+                  marginBottom: '6px',
+                }}
+              >
+                Mechanism & Context
+              </div>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: '#475569',
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                {activeLoop.mechanism}
+              </p>
             </div>
 
-            <div className="mb-4">
-              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Primary Stakeholders</h4>
-              <div className="flex flex-wrap gap-1.5">
+            {/* Stakeholders */}
+            <div style={{ marginBottom: '16px' }}>
+              <div
+                style={{
+                  fontSize: '10px',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  color: '#94A3B8',
+                  marginBottom: '8px',
+                }}
+              >
+                Primary Stakeholders
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 {activeLoop.stakeholders.map((s) => {
                   const stakeholder = (stakeholdersData as any)[s];
                   return (
                     <span
                       key={s}
-                      style={{ backgroundColor: stakeholder?.bg, borderColor: stakeholder?.border, color: stakeholder?.text }}
-                      className="px-2 py-0.5 rounded-md text-[11px] font-semibold border"
+                      style={{
+                        backgroundColor: stakeholder?.bg || '#F1F5F9',
+                        borderColor: stakeholder?.border || '#CBD5E1',
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        color: stakeholder?.text || '#0F172A',
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                      }}
                     >
                       {stakeholder?.name || s}
                     </span>
@@ -211,13 +455,58 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               </div>
             </div>
 
+            {/* Nodes Sequence */}
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nodes in Sequence</h4>
-              <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1 text-xs">
+              <div
+                style={{
+                  fontSize: '10px',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  color: '#94A3B8',
+                  marginBottom: '8px',
+                }}
+              >
+                Nodes in Sequence
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '6px',
+                  maxHeight: '160px',
+                  overflowY: 'auto',
+                  paddingRight: '4px',
+                }}
+              >
                 {activeLoop.keyNodes.map((nodeKey, idx) => (
-                  <div key={nodeKey} className="flex items-center gap-2 p-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-700">
-                    <span className="text-[10px] text-slate-400 font-mono font-bold">0{idx + 1}</span>
-                    <span className="capitalize text-[11px]">{nodeKey.replace(/_/g, ' ')}</span>
+                  <div
+                    key={nodeKey}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '6px 10px',
+                      borderRadius: '8px',
+                      backgroundColor: '#F8FAFC',
+                      border: '1px solid #F1F5F9',
+                      fontSize: '11px',
+                      color: '#334155',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        color: '#94A3B8',
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                      }}
+                    >
+                      0{idx + 1}
+                    </span>
+                    <span style={{ textTransform: 'capitalize' }}>
+                      {nodeKey.replace(/_/g, ' ')}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -226,7 +515,19 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
 
           <button
             onClick={() => setActiveLoopId(null)}
-            className="w-full mt-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition shadow-sm"
+            style={{
+              width: '100%',
+              marginTop: '16px',
+              padding: '10px 0',
+              backgroundColor: '#0F172A',
+              color: '#FFFFFF',
+              fontSize: '12px',
+              fontWeight: 600,
+              borderRadius: '12px',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s ease',
+            }}
           >
             Show Complete System Map
           </button>
