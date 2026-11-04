@@ -27,8 +27,17 @@ const CausalLoopMap = dynamic(() => import('@/components/CausalLoopMap'), {
 
 export default function Home() {
   return (
-    <div style={{ width: '100vw', height: '100vh', margin: 0, padding: 0, overflow: 'hidden', position: 'relative' }}>
+    <main
+      style={{
+        width: '100vw',
+        height: '100vh',
+        margin: 0,
+        padding: 0,
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
       <CausalLoopMap initialNodes={nodesData} initialEdges={edgesData} />
-    </div>
+    </main>
   );
 }
