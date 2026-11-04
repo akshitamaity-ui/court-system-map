@@ -6,6 +6,7 @@ import {
   Controls,
   Background,
   MiniMap,
+  MarkerType,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import loopsData from '@/data/loops.json';
@@ -31,6 +32,18 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
     return loopsData;
   }, [selectedFilter]);
 
+  // Dynamically compute all stakeholders present in active loop nodes
+  const activeLoopStakeholders = useMemo(() => {
+    if (!activeLoop) return [];
+    const stakeholderKeys = new Set<string>();
+    initialNodes.forEach((node) => {
+      if (activeLoop.keyNodes.includes(node.id) && node.data?.stakeholder) {
+        stakeholderKeys.add(node.data.stakeholder);
+      }
+    });
+    return Array.from(stakeholderKeys);
+  }, [activeLoop, initialNodes]);
+
   const styledNodes = useMemo(() => {
     return initialNodes.map((node) => {
       const stakeholder = (stakeholdersData as any)[node.data.stakeholder] || {
@@ -46,18 +59,18 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
         style: {
           backgroundColor: isInLoop ? stakeholder.bg : '#F8FAFC',
           borderColor: isInLoop ? stakeholder.border : '#E2E8F0',
-          borderWidth: isInLoop ? '1.5px' : '1px',
+          borderWidth: isInLoop ? '2px' : '1px',
           borderStyle: 'solid',
           color: isInLoop ? stakeholder.text : '#94A3B8',
-          opacity: isInLoop ? 1 : 0.15,
+          opacity: isInLoop ? 1 : 0.12,
           borderRadius: '8px',
           padding: '8px 12px',
           fontSize: '11px',
-          fontWeight: 600,
+          fontWeight: 650,
           lineHeight: '1.3',
           maxWidth: '180px',
           textAlign: 'center' as const,
-          boxShadow: isInLoop ? '0 4px 12px rgba(0,0,0,0.06)' : 'none',
+          boxShadow: isInLoop ? '0 4px 14px rgba(0,0,0,0.08)' : 'none',
           transition: 'all 0.25s ease',
           cursor: 'grab',
         },
@@ -72,17 +85,44 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
         activeLoop.keyNodes.includes(edge.source) &&
         activeLoop.keyNodes.includes(edge.target);
 
+      const sign = edge.data?.sign || edge.label || '+';
+      const isPositive = sign === '+';
+
+      const strokeColor = isInLoop
+        ? activeLoop.type === 'Reinforcing'
+          ? '#E11D48'
+          : '#2563EB'
+        : '#94A3B8';
+
       return {
         ...edge,
         animated: !!isInLoop,
+        label: sign,
+        labelStyle: {
+          fill: isPositive ? '#166534' : '#991B1B',
+          fontWeight: 900,
+          fontSize: 13,
+          fontFamily: 'monospace',
+        },
+        labelBgStyle: {
+          fill: isPositive ? '#DCFCE7' : '#FEE2E2',
+          fillOpacity: 0.95,
+          stroke: isPositive ? '#86EFAC' : '#FCA5A5',
+          strokeWidth: 1.5,
+          rx: 6,
+          ry: 6,
+        },
+        labelBgPadding: [6, 4] as [number, number],
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          color: strokeColor,
+          width: 16,
+          height: 16,
+        },
         style: {
-          stroke: isInLoop
-            ? activeLoop.type === 'Reinforcing'
-              ? activeLoop.color
-              : '#2563EB'
-            : '#CBD5E1',
-          strokeWidth: isInLoop ? 3.5 : 1,
-          opacity: !activeLoop || isInLoop ? 1 : 0.08,
+          stroke: strokeColor,
+          strokeWidth: isInLoop ? 3.5 : 1.5,
+          opacity: !activeLoop || isInLoop ? 1 : 0.12,
           transition: 'all 0.25s ease',
         },
       };
@@ -111,12 +151,12 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
           flexWrap: 'wrap',
           alignItems: 'center',
           gap: '8px',
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backgroundColor: 'rgba(255, 255, 255, 0.96)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           padding: '8px 12px',
           borderRadius: '16px',
-          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)',
+          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.06)',
           border: '1px solid rgba(226, 232, 240, 0.9)',
           maxWidth: '85vw',
         }}
@@ -127,7 +167,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
             setSelectedFilter('ALL');
           }}
           style={{
-            padding: '6px 12px',
+            padding: '6px 14px',
             borderRadius: '10px',
             fontSize: '12px',
             fontWeight: 700,
@@ -135,13 +175,12 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
             border: 'none',
             backgroundColor: !activeLoopId && selectedFilter === 'ALL' ? '#0F172A' : '#F1F5F9',
             color: !activeLoopId && selectedFilter === 'ALL' ? '#FFFFFF' : '#475569',
-            transition: 'all 0.2s ease',
+            transition: 'all 0.15s ease',
           }}
         >
           All System
         </button>
 
-        {/* Filter Segmented Pill */}
         <div
           style={{
             display: 'flex',
@@ -162,7 +201,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               border: 'none',
               backgroundColor: selectedFilter === 'ALL' ? '#FFFFFF' : 'transparent',
               color: selectedFilter === 'ALL' ? '#0F172A' : '#64748B',
-              boxShadow: selectedFilter === 'ALL' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              boxShadow: selectedFilter === 'ALL' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
             }}
           >
             All
@@ -178,7 +217,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               border: 'none',
               backgroundColor: selectedFilter === 'REINFORCING' ? '#FFFFFF' : 'transparent',
               color: selectedFilter === 'REINFORCING' ? '#E11D48' : '#64748B',
-              boxShadow: selectedFilter === 'REINFORCING' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              boxShadow: selectedFilter === 'REINFORCING' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
             }}
           >
             Reinforcing (R)
@@ -194,16 +233,15 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               border: 'none',
               backgroundColor: selectedFilter === 'BALANCING' ? '#FFFFFF' : 'transparent',
               color: selectedFilter === 'BALANCING' ? '#2563EB' : '#64748B',
-              boxShadow: selectedFilter === 'BALANCING' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              boxShadow: selectedFilter === 'BALANCING' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
             }}
           >
             Balancing (B)
           </button>
         </div>
 
-        <div style={{ width: '1px', height: '18px', backgroundColor: '#E2E8F0', margin: '0 4px' }} />
+        <div style={{ width: '1px', height: '18px', backgroundColor: '#CBD5E1', margin: '0 4px' }} />
 
-        {/* Loop Pills */}
         <div
           style={{
             display: 'flex',
@@ -228,9 +266,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                   fontSize: '11px',
                   fontWeight: 600,
                   cursor: 'pointer',
-                  border: isSelected
-                    ? 'none'
-                    : '1px solid #E2E8F0',
+                  border: isSelected ? 'none' : '1px solid #E2E8F0',
                   backgroundColor: isSelected
                     ? loop.type === 'Reinforcing'
                       ? '#E11D48'
@@ -277,30 +313,101 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
         </div>
       </header>
 
-      {/* Main Canvas */}
+      {/* Main Canvas Viewport */}
       <main style={{ width: '100%', height: '100%' }}>
         <ReactFlow
           nodes={styledNodes}
           edges={styledEdges}
           fitView
-          fitViewOptions={{ padding: 0.1, minZoom: 0.25, maxZoom: 1.1 }}
+          fitViewOptions={{ padding: 0.12, minZoom: 0.25, maxZoom: 1.1 }}
           minZoom={0.12}
           maxZoom={2}
         >
           <Background color="#CBD5E1" gap={20} size={1} />
-          <Controls position="bottom-left" />
+          <Controls position="bottom-left" style={{ bottom: '260px' }} />
           <MiniMap
             style={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E2E8F0',
               borderRadius: '12px',
               boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+              bottom: '260px',
             }}
           />
         </ReactFlow>
       </main>
 
-      {/* Right-hand Explainer Drawer */}
+      {/* Persistent Bottom-Left Color Legend */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '16px',
+          left: '16px',
+          zIndex: 20,
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          borderRadius: '14px',
+          padding: '12px 14px',
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
+          maxWidth: '360px',
+        }}
+      >
+        <div
+          style={{
+            fontSize: '10px',
+            fontWeight: 800,
+            textTransform: 'uppercase',
+            letterSpacing: '0.6px',
+            color: '#64748B',
+            marginBottom: '8px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <span>Stakeholder & System Legend</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, color: '#94A3B8' }}>Color Coding</span>
+        </div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: '6px',
+          }}
+        >
+          {Object.entries(stakeholdersData).map(([key, item]: [string, any]) => (
+            <div
+              key={key}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '10.5px',
+                color: '#334155',
+                fontWeight: 600,
+              }}
+            >
+              <span
+                style={{
+                  width: '12px',
+                  height: '12px',
+                  borderRadius: '3px',
+                  backgroundColor: item.bg,
+                  border: `1.5px solid ${item.border}`,
+                  flexShrink: 0,
+                }}
+              />
+              <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {item.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Explainer Drawer */}
       {activeLoop && (
         <aside
           style={{
@@ -376,7 +483,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                   marginBottom: '6px',
                 }}
               >
-                Causal Path
+                Closed Causal Circuit
               </div>
               <div
                 style={{
@@ -416,7 +523,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               </p>
             </div>
 
-            {/* Stakeholders */}
+            {/* ALL Stakeholders Involved in this Loop */}
             <div style={{ marginBottom: '16px' }}>
               <div
                 style={{
@@ -428,27 +535,27 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                   marginBottom: '8px',
                 }}
               >
-                Primary Stakeholders
+                All Stakeholders in This Loop ({activeLoopStakeholders.length})
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                {activeLoop.stakeholders.map((s) => {
-                  const stakeholder = (stakeholdersData as any)[s];
+                {activeLoopStakeholders.map((key) => {
+                  const stakeholder = (stakeholdersData as any)[key];
                   return (
                     <span
-                      key={s}
+                      key={key}
                       style={{
                         backgroundColor: stakeholder?.bg || '#F1F5F9',
                         borderColor: stakeholder?.border || '#CBD5E1',
-                        borderWidth: '1px',
+                        borderWidth: '1.5px',
                         borderStyle: 'solid',
                         color: stakeholder?.text || '#0F172A',
-                        padding: '3px 8px',
+                        padding: '4px 10px',
                         borderRadius: '6px',
                         fontSize: '11px',
-                        fontWeight: 600,
+                        fontWeight: 700,
                       }}
                     >
-                      {stakeholder?.name || s}
+                      {stakeholder?.name || key}
                     </span>
                   );
                 })}
@@ -467,7 +574,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                   marginBottom: '8px',
                 }}
               >
-                Nodes in Sequence
+                Nodes in Sequence ({activeLoop.keyNodes.length})
               </div>
               <div
                 style={{
@@ -479,7 +586,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                   paddingRight: '4px',
                 }}
               >
-                {activeLoop.keyNodes.map((nodeKey, idx) => (
+                {activeLoop.keyNodes.map((nodeKey: string, idx: number) => (
                   <div
                     key={nodeKey}
                     style={{
@@ -489,7 +596,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                       padding: '6px 10px',
                       borderRadius: '8px',
                       backgroundColor: '#F8FAFC',
-                      border: '1px solid #F1F5F9',
+                      border: '1px solid #E2E8F0',
                       fontSize: '11px',
                       color: '#334155',
                     }}
@@ -502,7 +609,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
                         fontWeight: 700,
                       }}
                     >
-                      0{idx + 1}
+                      {String(idx + 1).padStart(2, '0')}
                     </span>
                     <span style={{ textTransform: 'capitalize' }}>
                       {nodeKey.replace(/_/g, ' ')}
