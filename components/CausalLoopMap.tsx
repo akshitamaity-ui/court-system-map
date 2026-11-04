@@ -32,7 +32,6 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
     return loopsData;
   }, [selectedFilter]);
 
-  // Dynamically compute all stakeholders present in active loop nodes
   const activeLoopStakeholders = useMemo(() => {
     if (!activeLoop) return [];
     const stakeholderKeys = new Set<string>();
@@ -143,10 +142,10 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
       {/* Top Floating Control Bar */}
       <header
         style={{
-          position: 'absolute',
+          position: 'fixed',
           top: '16px',
           left: '16px',
-          zIndex: 20,
+          zIndex: 9999,
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
@@ -156,7 +155,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
           WebkitBackdropFilter: 'blur(12px)',
           padding: '8px 12px',
           borderRadius: '16px',
-          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.06)',
+          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.12), 0 8px 10px -6px rgba(0,0,0,0.06)',
           border: '1px solid rgba(226, 232, 240, 0.9)',
           maxWidth: '85vw',
         }}
@@ -313,8 +312,8 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
         </div>
       </header>
 
-      {/* Main Canvas Viewport */}
-      <main style={{ width: '100%', height: '100%' }}>
+      {/* Main Canvas */}
+      <main style={{ width: '100vw', height: '100vh', position: 'relative', zIndex: 1 }}>
         <ReactFlow
           nodes={styledNodes}
           edges={styledEdges}
@@ -324,14 +323,15 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
           maxZoom={2}
         >
           <Background color="#CBD5E1" gap={20} size={1} />
-          <Controls position="bottom-left" style={{ bottom: '260px' }} />
+          <Controls position="bottom-left" style={{ bottom: '270px', zIndex: 9998 }} />
           <MiniMap
             style={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E2E8F0',
               borderRadius: '12px',
               boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-              bottom: '260px',
+              bottom: '270px',
+              zIndex: 9998,
             }}
           />
         </ReactFlow>
@@ -340,17 +340,17 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
       {/* Persistent Bottom-Left Color Legend */}
       <div
         style={{
-          position: 'absolute',
+          position: 'fixed',
           bottom: '16px',
           left: '16px',
-          zIndex: 20,
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          zIndex: 9999,
+          backgroundColor: 'rgba(255, 255, 255, 0.96)',
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
           borderRadius: '14px',
           padding: '12px 14px',
           border: '1px solid #E2E8F0',
-          boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
           maxWidth: '360px',
         }}
       >
@@ -411,7 +411,7 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
       {activeLoop && (
         <aside
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: 0,
             right: 0,
             width: '380px',
@@ -421,11 +421,11 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
             WebkitBackdropFilter: 'blur(16px)',
             borderLeft: '1px solid #E2E8F0',
             padding: '24px',
-            zIndex: 30,
+            zIndex: 99999,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            boxShadow: '-10px 0 30px rgba(0,0,0,0.08)',
+            boxShadow: '-10px 0 30px rgba(0,0,0,0.1)',
             overflowY: 'auto',
           }}
         >
@@ -463,7 +463,6 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               {activeLoop.title}
             </h2>
 
-            {/* Path Box */}
             <div
               style={{
                 marginBottom: '14px',
@@ -497,7 +496,6 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               </div>
             </div>
 
-            {/* Mechanism */}
             <div style={{ marginBottom: '16px' }}>
               <div
                 style={{
@@ -523,7 +521,6 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               </p>
             </div>
 
-            {/* ALL Stakeholders Involved in this Loop */}
             <div style={{ marginBottom: '16px' }}>
               <div
                 style={{
@@ -562,7 +559,6 @@ export default function CausalLoopMap({ initialNodes, initialEdges }: Props) {
               </div>
             </div>
 
-            {/* Nodes Sequence */}
             <div>
               <div
                 style={{
