@@ -1,110 +1,143 @@
 [
   {
     "id": "R1",
-    "title": "The Scrutiny & Filing Congestion Loop",
-    "nature": "Negative (Vicious Cycle)",
-    "type": "Reinforcing",
     "badge": "R1",
+    "type": "Reinforcing",
+    "title": "The Scrutiny & Filing Congestion Loop",
+    "nature": "Vicious Loop (Administrative Delay)",
     "color": "#E11D48",
-    "path": "Scrutiny backlog → Burden on court staff → Speed of verification drops → Time taken in scrutiny rises → Length of scrutiny period rises → Errors in scrutiny rise → Scrutiny backlog rises",
-    "mechanism": "As the scrutiny backlog piles up, court staff experience severe processing burdens. This delay leads to rushed submissions, higher error rates, and repeated defects/refilings, which further feed back into the pile of pending documents awaiting verification.",
-    "keyNodes": ["scrutiny_backlog", "burden_on_court_staff", "speed_of_filing_verification", "time_taken_in_scrutiny", "length_of_scrutiny_period", "rate_of_errors_in_scrutiny", "number_of_unregistered_complaints", "pending_registration"],
-    "stakeholders": ["court_staff", "judiciary", "complainant"]
+    "path": "Filing Errors → Burden on Court Staff → Scrutiny Backlog → Time Taken to Scrutinize → Length of Scrutiny Period → Filing Errors",
+    "mechanism": "High defect rates in filing documents increase verification burden on staff, multiplying scrutiny backlog and lengthening turnaround times, which compounds filing errors.",
+    "keyNodes": [
+      "rate_of_errors_in_scrutiny",
+      "burden_on_court_staff",
+      "scrutiny_backlog",
+      "time_taken_in_scrutiny",
+      "length_of_scrutiny_period"
+    ]
   },
   {
     "id": "R2",
-    "title": "The Early Settlement & Deterrence Loop",
-    "nature": "Positive (Virtuous Cycle)",
-    "type": "Reinforcing",
     "badge": "R2",
-    "color": "#10B981",
-    "path": "Statutory notice → Understanding dishonour notice → Willingness to pay → Use of mediation outside court → Share of dues paid → Perceived accountability",
-    "mechanism": "Prompt receipt of statutory notices combined with a clear threat of credible legal accountability motivates settlement before trial. When creditors successfully recover funds early via mediation or notice compliance, it reinforces standard, disciplined legal compliance across transactions.",
-    "keyNodes": ["statutory_notice", "understanding_notice", "willingness_to_pay", "settlement_dispute_exit", "share_of_dues_paid", "confidence_in_pursuing_issue", "alignment_of_client_expectations", "perceived_accountability"],
-    "stakeholders": ["complainant", "accused"]
+    "type": "Reinforcing",
+    "title": "The Early Settlement & Deterrence Loop",
+    "nature": "Virtuous Loop (Pre-Trial Resolution)",
+    "color": "#E11D48",
+    "path": "Statutory Notice → Understanding Notice → Perceived Accountability → Willingness to Pay → Share of Dues Paid → Statutory Notice",
+    "mechanism": "Prompt and clear statutory notice establishes immediate legal exposure and perceived accountability, encouraging accused parties to settle early prior to formal docketing.",
+    "keyNodes": [
+      "statutory_notice",
+      "understanding_notice",
+      "perceived_accountability",
+      "willingness_to_pay",
+      "share_of_dues_paid"
+    ]
   },
   {
     "id": "R3",
-    "title": "Summons Service & Timely Appearance Loop",
-    "nature": "Positive (Virtuous Cycle)",
-    "type": "Reinforcing",
     "badge": "R3",
-    "color": "#10B981",
-    "path": "Accuracy of verified address → Summons effectively served → Likelihood accused receives summons → Ease of understanding summons → Perceived accountability → Tendency to evade drops → Chances accused appears rises → Hearings proceed",
-    "mechanism": "High-accuracy addresses and reliable tracking minimize lost service cycles, removing the excuse of non-service and establishing early procedural momentum.",
-    "keyNodes": ["verified_address", "summons_effectively_served", "likelihood_accused_receives_summons", "ease_of_understanding_summons", "perceived_accountability", "tendency_to_evade", "accused_appears_in_court", "hearings_proceed", "number_of_hearing_occurs"],
-    "stakeholders": ["police", "court_staff", "accused", "judiciary"]
+    "type": "Reinforcing",
+    "title": "Summons Service & Timely Appearance Loop",
+    "nature": "Virtuous / Vicious Loop (Service Delivery)",
+    "color": "#E11D48",
+    "path": "Verified Address → Use of Reputable Courier → Speed of Service → Summons Effectively Served → Likelihood Accused Receives Summons → Chances Accused Appears in Court → Hearings Proceed → Verified Address",
+    "mechanism": "Accurate verified addresses allow swift summons delivery through formal couriers, substantially raising the probability of timely court appearance and scheduled hearing completion.",
+    "keyNodes": [
+      "verified_address",
+      "use_of_reputable_courier_post",
+      "speed_of_service",
+      "summons_effectively_served",
+      "likelihood_accused_receives_summons",
+      "accused_appears_in_court",
+      "hearings_proceed"
+    ]
   },
   {
     "id": "R4",
-    "title": "The Adjournment & Caseload Compounding Loop",
-    "nature": "Negative (Vicious Cycle)",
-    "type": "Reinforcing",
     "badge": "R4",
+    "type": "Reinforcing",
+    "title": "The Adjournment & Caseload Compounding Loop",
+    "nature": "Vicious Loop (Procedural Drag)",
     "color": "#E11D48",
-    "path": "Caseload backlog → Time to next date rises → Gap between hearings rises → Schedulability drops → Adjournment requests rise → Frequency of adjournments rises → Backlog rises",
-    "mechanism": "When the court docket is overwhelmed, hearings are spaced months apart. Because lawyers handle multiple cases on overlapping dockets, schedule clashes force repeated requests for adjournment. Each granted adjournment prolongs the case lifecycle, further inflating the active caseload.",
-    "keyNodes": ["caseload_backlog", "time_to_next_date", "gap_between_consecutive_hearings", "schedulability_magistrate_lawyers", "ask_adjournment_complainant_lawyer", "ask_adjournment_accused_lawyer", "frequency_of_adjournments"],
-    "stakeholders": ["judiciary", "magistrate", "court_staff", "accused", "complainant"]
+    "path": "Number of Cases → Frequency of Adjournments → Backlog (Operational) → Gap Between Hearings → Schedulability of Magistrate & Lawyers → Number of Cases",
+    "mechanism": "Bloated dockets incentivize lawyers to seek strategic adjournments, inflating operational backlogs and lengthening hearing gaps, further compounding the active caseload.",
+    "keyNodes": [
+      "number_of_cases",
+      "frequency_of_adjournments",
+      "caseload_backlog",
+      "gap_between_consecutive_hearings",
+      "schedulability_magistrate_lawyers"
+    ]
   },
   {
     "id": "R5",
-    "title": "The Evasion, Escalation & Police Overburden Loop",
-    "nature": "Negative (Vicious Cycle)",
-    "type": "Reinforcing",
     "badge": "R5",
+    "type": "Reinforcing",
+    "title": "Evasion, Escalation & Police Overburden Loop",
+    "nature": "Vicious Loop (Enforcement Failure)",
     "color": "#E11D48",
-    "path": "Accused non-appearance → Proceedings frustrated → Magistrate escalates → Severity of warrants rises → Burden on police rises → Warrant execution drops → Accused traced drops → Non-appearance worsens",
-    "mechanism": "Accused non-appearance forces courts to escalate from summons to non-bailable warrants. However, local police face severe bandwidth constraints. A surge in unexecuted warrants dilutes enforcement capacity, reducing execution rates and emboldening defendants to evade court dates.",
-    "keyNodes": ["accused_appears_in_court", "proceedings_frustrated", "magistrate_decision_escalate", "severity_of_warrants", "burden_on_police", "rate_warrant_execution", "chances_accused_traced", "number_of_arrests"],
-    "stakeholders": ["accused", "magistrate", "police", "judiciary"]
+    "path": "Tendency to Evade → Case Delay (Warrant Stage) → Magistrate Propensity to Escalate → Severity of Warrants → Burden on Police → Rate of Warrant Execution → Tendency to Evade",
+    "mechanism": "Persistent non-appearance triggers escalated warrant severity (bailable to non-bailable), overwhelming police capacity, depressing execution rates, and normalizing further evasion.",
+    "keyNodes": [
+      "tendency_to_evade",
+      "case_delay_warrants",
+      "magistrate_decision_escalate",
+      "severity_of_warrants",
+      "burden_on_police",
+      "rate_warrant_execution"
+    ]
   },
   {
     "id": "R6",
-    "title": "The Litigation Fatigue & Attrition Loop",
-    "nature": "Negative (Vicious Cycle)",
-    "type": "Reinforcing",
     "badge": "R6",
+    "type": "Reinforcing",
+    "title": "The Litigation Fatigue & Attrition Loop",
+    "nature": "Vicious Loop (Complainant Exhaustion)",
     "color": "#E11D48",
-    "path": "Case pendency rises → Money spent on case rises → Willingness to continue drops → Discounted settlements or withdrawals rise → Cases closed without recovery rises",
-    "mechanism": "Prolonged delays impose severe financial and psychological burdens on complainants, eroding their persistence and forcing unrecovered abandonment or distress settlements.",
-    "keyNodes": ["case_pendency", "money_spent_on_case", "willingness_to_continue", "number_of_withdrawn_or_discounted_settlement", "cases_closed_without_recovery", "mental_conflict_over_escalation"],
-    "stakeholders": ["complainant", "accused"]
+    "path": "Case Pendency → Money Spent on Case → Mental Conflict Over Escalation → Willingness to Continue → Cases Closed Without Recovery → Case Pendency",
+    "mechanism": "Endless procedural delays escalate financial expenses and emotional fatigue on complainants, ultimately destroying their willingness to continue and forcing abandoned recoveries.",
+    "keyNodes": [
+      "case_pendency",
+      "money_spent_on_case",
+      "mental_conflict_over_escalation",
+      "willingness_to_continue",
+      "number_of_withdrawn_or_discounted_settlement",
+      "cases_closed_without_recovery"
+    ]
   },
   {
     "id": "B1",
-    "title": "The External Diversion / Mediation Balancing Loop",
-    "nature": "Balancing Mechanism",
-    "type": "Balancing",
     "badge": "B1",
+    "type": "Balancing",
+    "title": "The External Diversion / Mediation Balancing Loop",
+    "nature": "Balancing Loop (Alternative Relief)",
     "color": "#2563EB",
-    "path": "Caseload backlog rises (+) → Cases referred to mediation rises (+) → Dispute resolution (Lok Adalat / Mediation) rises (+) → Caseload backlog drops (-)",
-    "mechanism": "As judicial pendency surges beyond operational capacity, magistrates actively divert check bounce disputes into alternative dispute resolution (ADR) mechanisms like Lok Adalats or mediation. Successful resolutions bleed off caseload volume, restoring courtroom bandwidth.",
-    "keyNodes": ["caseload_backlog", "cases_referred_to_mediation", "rate_resolution_lok_adalat", "rate_resolution_mediation"],
-    "stakeholders": ["magistrate", "complainant", "accused"]
+    "path": "Delay in Pursuing Legal Option → Cost of Seeking Redress → Use of Mediation Outside Court → Willingness to Pay → Settlement / Dispute Exit",
+    "mechanism": "Excessive litigation delays and expenses drive disputing parties to pursue pre-institution mediation and Lok Adalats, redirecting disputes away from the congested formal docket.",
+    "keyNodes": [
+      "delay_in_pursuing_issue",
+      "cost_of_seeking_legal_redress",
+      "settlement_dispute_exit",
+      "willingness_to_pay",
+      "rate_resolution_mediation"
+    ]
   },
   {
     "id": "B2",
-    "title": "Judicial Clearance Pressure Balancing Loop",
-    "nature": "Balancing Mechanism",
-    "type": "Balancing",
     "badge": "B2",
+    "type": "Balancing",
+    "title": "Judicial Clearance Pressure Balancing Loop",
+    "nature": "Balancing Loop (Institutional Throttle)",
     "color": "#2563EB",
-    "path": "Caseload backlog rises (+) → Pressure to clear cases rises (+) → Cases reaching judgment rises (+) → Resolution through court rises (+) → Backlog drops (-)",
-    "mechanism": "Rising pending figures trigger administrative scrutiny, disposal quotas, and judicial pressure, incentivizing judges to clamp down on frivolous adjournment requests and push older matters to final judgment.",
-    "keyNodes": ["caseload_backlog", "pressure_to_clear_cases", "cases_reaching_judgment", "resolution_through_court", "frequency_of_adjournments"],
-    "stakeholders": ["judiciary", "magistrate"]
+    "path": "Case Pendency → Pressure to Clear Cases → Cases Referred to Mediation → Resolution Through Court → Cases Reaching Judgement → Case Pendency",
+    "mechanism": "Mounting pendency mounts administrative pressure on magistrates, accelerating referrals to Lok Adalats and summary disposals to re-stabilize court docket volume.",
+    "keyNodes": [
+      "case_pendency",
+      "pressure_to_clear_cases",
+      "cases_referred_to_mediation",
+      "rate_resolution_lok_adalat",
+      "cases_reaching_judgment"
+    ]
   },
   {
     "id": "B3",
-    "title": "The Non-Appearance Escalation Balancing Loop",
-    "nature": "Balancing Mechanism",
-    "type": "Balancing",
-    "badge": "B3",
-    "color": "#2563EB",
-    "path": "Accused non-appearance (-) → Severity of warrants rises (+) → Police effort in pursuit rises (+) → Warrant execution rises (+) → Accused traced / appears rises (+)",
-    "mechanism": "The legal framework counters defendant non-appearance through coercive procedural escalation (summons → bailable warrants → non-bailable warrants → custody/surety forfeiture), ultimately compelling court production to prevent indefinite stalemate.",
-    "keyNodes": ["accused_appears_in_court", "severity_of_warrants", "police_effort_pursuit", "rate_warrant_execution", "number_of_arrests"],
-    "stakeholders": ["accused", "magistrate", "police"]
-  }
-]
