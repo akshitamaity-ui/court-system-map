@@ -60,5 +60,33 @@
   { "id": "e_press_refmed", "source": "pressure_to_clear_cases", "target": "cases_referred_to_mediation", "label": "+", "data": { "sign": "+" } },
   { "id": "e_refmed_lok", "source": "cases_referred_to_mediation", "target": "rate_resolution_lok_adalat", "label": "+", "data": { "sign": "+" } },
   { "id": "e_lok_judg", "source": "rate_resolution_lok_adalat", "target": "cases_reaching_judgment", "label": "+", "data": { "sign": "+" } },
-  { "id": "e_judg_pend", "source": "cases_reaching_judgment", "target": "case_pendency", "label": "-", "data": { "sign": "-" } }
+  { "id": "e_judg_pend", "source": "cases_reaching_judgment", "target": "case_pendency", "label": "-", "data": { "sign": "-" } },
+
+  { "id": "e_dig_under", "source": "digital_literacy", "target": "ease_in_understanding_summons", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_dig_counsel", "source": "digital_literacy", "target": "access_to_legal_counsel", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_counsel_delay", "source": "access_to_legal_counsel", "target": "incentive_to_delay_action", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_inc_evade", "source": "incentive_to_delay_action", "target": "tendency_to_evade", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_inc_dilatory", "source": "incentive_to_delay_action", "target": "dilatory_tactics_delay", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_geo_evade", "source": "geographical_constraint_court", "target": "tendency_to_evade", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_aware_account", "source": "awareness_of_consequences", "target": "perceived_legal_accountability", "label": "+", "data": { "sign": "+" } },
+
+  { "id": "e_surety_guar", "source": "availability_of_surety", "target": "presence_of_guarantor", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_guar_bail", "source": "presence_of_guarantor", "target": "rate_of_demand_bail", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_mag_sched", "source": "rate_magistrate_attendance", "target": "schedulability_magistrate_lawyers", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_staff_sched", "source": "staff_availability_every_session", "target": "schedulability_magistrate_lawyers", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_prep_proceed", "source": "both_party_lawyer_case_prep", "target": "hearings_proceed", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_adj_comp_freq", "source": "ask_adjournment_complainant_lawyer", "target": "frequency_of_adjournments", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_adj_acc_freq", "source": "ask_adjournment_accused_lawyer", "target": "frequency_of_adjournments", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_att_acc_adj", "source": "rate_accused_lawyer_attendance", "target": "ask_adjournment_accused_lawyer", "label": "-", "data": { "sign": "-" } },
+  { "id": "e_att_comp_adj", "source": "rate_complainant_lawyer_attendance", "target": "ask_adjournment_complainant_lawyer", "label": "-", "data": { "sign": "-" } },
+
+  { "id": "e_judge_time_proc", "source": "time_spent_judge_per_hearing", "target": "time_to_conduct_proceeding", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_time_proc_backlog", "source": "time_to_conduct_proceeding", "target": "caseload_backlog", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_nonapp_appear", "source": "perceived_consequences_non_appearance", "target": "chances_accused_appears_hearing_stage", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_appear_proceed", "source": "chances_accused_appears_hearing_stage", "target": "hearings_proceed", "label": "+", "data": { "sign": "+" } },
+
+  { "id": "e_cred_judg", "source": "perceived_credibility_accused", "target": "cases_reaching_judgment", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_sev_prison", "source": "severity_of_punishment", "target": "share_of_accused_imprisoned", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_prison_account", "source": "share_of_accused_imprisoned", "target": "perceived_legal_accountability", "label": "+", "data": { "sign": "+" } },
+  { "id": "e_settle_unrecov", "source": "case_settlement", "target": "cases_closed_without_recovery", "label": "-", "data": { "sign": "-" } }
 ]
