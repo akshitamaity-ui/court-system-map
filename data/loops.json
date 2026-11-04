@@ -141,3 +141,21 @@
   },
   {
     "id": "B3",
+    "badge": "B3",
+    "type": "Balancing",
+    "title": "The Non-Appearance Escalation Balancing Loop",
+    "nature": "Balancing Loop (Compulsory Enforcement)",
+    "color": "#2563EB",
+    "path": "Extent of Proceedings Frustrated → Magistrate Propensity to Escalate → Severity of Warrants → Police Effort in Pursuing Accused → Rate of Warrant Execution → Number of Arrests → Chances Accused Appears in Court → Extent of Proceedings Frustrated",
+    "mechanism": "Accused evasion forces judicial escalation through arrest warrants, compelling police enforcement and apprehension, which directly restores accused attendance before the court.",
+    "keyNodes": [
+      "extent_of_proceedings_frustrated",
+      "magistrate_decision_escalate",
+      "severity_of_warrants",
+      "police_effort_pursuit",
+      "rate_warrant_execution",
+      "number_of_arrests",
+      "accused_appears_in_court"
+    ]
+  }
+]
